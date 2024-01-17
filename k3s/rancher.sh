@@ -1,19 +1,24 @@
+CERT_MANAGER_VERSION=v1.12.7
+LETSENCRYPT_EMAIL=sample@gmail.com 
+BOOTSTRAP_PASSWORD=supersecretpassword
+RANCHER_HOSTNAME=example.com
+
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
 
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.7.1/cert-manager.crds.yaml
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/${CERT_MANAGER_VERSION}/cert-manager.crds.yaml
 kubectl create namespace cattle-system
 
 helm install cert-manager jetstack/cert-manager \
   --namespace cert-manager \
   --create-namespace \
-  --version v1.12.7
+  --version ${CERT_MANAGER_VERSION}
 
 helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
-  --set hostname=example.com \
-  --set bootstrapPassword=supersecretpassword \
+  --set hostname=${RANCHER_HOSTNAME} \
+  --set bootstrapPassword=${BOOTSTRAP_PASSWORD} \
   --set ingress.tls.source=letsEncrypt \
-  --set letsEncrypt.email=sample@gmail.com \
+  --set letsEncrypt.email=${LETSENCRYPT_EMAIL} \
   --set letsEncrypt.ingress.class=traefik
