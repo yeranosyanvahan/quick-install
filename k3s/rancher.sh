@@ -2,6 +2,7 @@ CERT_MANAGER_VERSION=v1.12.7
 LETSENCRYPT_EMAIL=sample@gmail.com 
 BOOTSTRAP_PASSWORD=supersecretpassword
 RANCHER_HOSTNAME=example.com
+RANCHER_VERSION=2.7.9
 
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 helm repo add jetstack https://charts.jetstack.io
@@ -22,3 +23,4 @@ helm install rancher rancher-stable/rancher \
   --set ingress.tls.source=letsEncrypt \
   --set letsEncrypt.email=${LETSENCRYPT_EMAIL} \
   --set letsEncrypt.ingress.class=traefik
+  --version=${RANCHER_VERSION}
