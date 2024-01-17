@@ -18,9 +18,9 @@ helm install cert-manager jetstack/cert-manager \
 
 helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
+  --version=${RANCHER_VERSION} \
   --set hostname=${RANCHER_HOSTNAME} \
   --set bootstrapPassword=${BOOTSTRAP_PASSWORD} \
   --set ingress.tls.source=letsEncrypt \
   --set letsEncrypt.email=${LETSENCRYPT_EMAIL} \
   --set letsEncrypt.ingress.class=traefik
-  --version=${RANCHER_VERSION}
