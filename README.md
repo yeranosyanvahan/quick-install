@@ -10,6 +10,6 @@ git clone https://github.com/yeranosyanvahan/quick-install.git
 
 To install rancher
 ```bash
-bash k3s/server.sh
+source k3s/server.sh
 bash k3s/rancher.sh
 ```
