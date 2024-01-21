@@ -16,6 +16,8 @@ helm ${HELMCOMMAND} cert-manager jetstack/cert-manager \
   --create-namespace \
   --version ${CERT_MANAGER_VERSION}
 
+kubectl create namespace cattle-system
+
 helm ${HELMCOMMAND} rancher rancher-stable/rancher \
   --namespace cattle-system \
   --version=${RANCHER_VERSION} \
