@@ -25,7 +25,7 @@ helm ${HELMCOMMAND} rancher rancher-stable/rancher \
   --set bootstrapPassword=${BOOTSTRAP_PASSWORD} \
   --set ingress.tls.source=letsEncrypt \
   --set letsEncrypt.email=${LETSENCRYPT_EMAIL} \
-  --set letsEncrypt.ingress.class=traefik
+  --set letsEncrypt.ingress.class=traefik \
   --set service.type=NodePort \
   --set service.nodePorts.http=30080 \
   --set service.nodePorts.https=30433
