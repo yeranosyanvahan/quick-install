@@ -1,11 +1,11 @@
 #!/bin/bash
-export KUBECONFIG=${K3S_KUBECONFIG_PATH}
 
 set -a  
 source ".env"
 set +a 
 
 HELMCOMMAND=install
+export KUBECONFIG=${K3S_KUBECONFIG_PATH}
 
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 helm repo add jetstack https://charts.jetstack.io
