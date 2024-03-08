@@ -18,12 +18,12 @@ helm ${HELMCOMMAND} cert-manager jetstack/cert-manager \
   --create-namespace \
   --version ${CERT_MANAGER_VERSION}
 
-
 kubectl create namespace cattle-system
 
 helm ${HELMCOMMAND} rancher rancher-stable/rancher \
   --namespace cattle-system \
   --version=${RANCHER_VERSION} \
+  --set hostname=${RANCHER_HOSTNAME} \
   --set bootstrapPassword=${BOOTSTRAP_PASSWORD} \
   --set service.type=NodePort \
   --set service.nodePorts.http=${RANCHER_HTTP_PORT} \
