@@ -1,4 +1,5 @@
 #!/bin/bash
+export KUBECONFIG=${K3S_KUBECONFIG_PATH}
 
 set -a  
 source ".env"
