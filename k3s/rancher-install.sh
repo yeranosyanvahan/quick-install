@@ -1,8 +1,9 @@
-CERT_MANAGER_VERSION=v1.12.7
-RANCHER_VERSION=2.7.9
-RANCHER_HOSTNAME=example.com
-BOOTSTRAP_PASSWORD=supersecretpassword
-LETSENCRYPT_EMAIL=sample@gmail.com
+#!/bin/bash
+
+set -a  
+source ".env"
+set +a 
+
 HELMCOMMAND=install
 
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
