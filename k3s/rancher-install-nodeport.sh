@@ -24,7 +24,6 @@ helm ${HELMCOMMAND} rancher rancher-stable/rancher \
   --namespace cattle-system \
   --version=${RANCHER_VERSION} \
   --set hostname=${RANCHER_HOSTNAME} \
-  --set bootstrapPassword=${BOOTSTRAP_PASSWORD} \
   --set service.type=NodePort \
   --set service.nodePorts.http=${RANCHER_HTTP_PORT} \
   --set service.nodePorts.https=${RANCHER_HTTPS_PORT}
