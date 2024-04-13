@@ -6,6 +6,7 @@ RANCHER_VERSION="2.8.2"
 CERT_MANAGER_VERSION="v1.14.4"
 CLUSTER_CIDR="10.42.0.0/16"  # Default k3s cluster CIDR
 SERVICE_CIDR="10.43.0.0/16"  # Default k3s service CIDR
+K3S_KUBECONFIG_PATH=/etc/rancher/k3s/k3s.yaml
 
 # Function to check if k3s server or agent is installed
 check_k3s_role() {
@@ -68,6 +69,7 @@ install_k3s_server() {
     read -p "Please confirm the installation (Y/N): " confirm
     if [[ "$confirm" =~ ^[Yy]$ ]]; then
         curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${K3S_VERSION} sh -s - server --cluster-cidr=${CLUSTER_CIDR} --service-cidr=${SERVICE_CIDR}
+        export KUBECONFIG=${K3S_KUBECONFIG_PATH}
         echo "k3s server installation initiated."
     else
         echo "k3s server installation cancelled."
