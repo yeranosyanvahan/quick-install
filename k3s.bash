@@ -34,30 +34,7 @@ install_dependencies() {
         echo "Failed to install curl."
         return 1
     fi
-
-    echo "Do you want to install iSCSI and NFS for CSI or Longhorn storage? (y/n)"
-    read -r install_storage
-
-    if [ "$install_storage" = "y" ]; then
-        echo "Installing iSCSI and enabling it..."
-        sudo apt-get update && sudo apt-get install -y open-iscsi
-        sudo systemctl start iscsid
-        sudo systemctl enable iscsid
-        if [ $? -ne 0 ]; then
-            echo "Failed to install or start iscsid."
-            return 1
-        fi
-
-        echo "Installing NFS common tools..."
-        sudo apt-get install -y nfs-common
-        if [ $? -ne 0 ]; then
-            echo "Failed to install nfs-common."
-            return 1
-        fi
-    else
-        echo "Skipping iSCSI and NFS installation."
-    fi
-
+    
     echo "Dependencies installed successfully."
 }
 
