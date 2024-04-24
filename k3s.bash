@@ -76,6 +76,7 @@ install_helm() {
 
 install_cert_manager() {
     echo "Installing cert-manager Version ${CERT_MANAGER_VERSION}..."
+    export KUBECONFIG=${K3S_KUBECONFIG_PATH}
     kubectl create namespace cert-manager || true  # Ignore if namespace already exists
     helm repo add jetstack https://charts.jetstack.io
     helm repo update
