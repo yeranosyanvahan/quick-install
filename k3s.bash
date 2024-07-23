@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set environment variables for versions and configurations to their defaults
-K3S_VERSION="v1.27.11+k3s1"
-RANCHER_VERSION="2.8.2"
+K3S_VERSION="1.28.10+k3s1"
+RANCHER_VERSION="2.8.5"
 CERT_MANAGER_VERSION="v1.14.4"
 CLUSTER_CIDR="10.42.0.0/16"  # Default k3s cluster CIDR
 SERVICE_CIDR="10.43.0.0/16"  # Default k3s service CIDR
