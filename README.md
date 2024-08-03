@@ -1,66 +1,66 @@
+# Quick Install
 
-# K3s and Rancher Installation Scripts
+**Quick Install** is a simple Python-based tool designed to manage the installation, configuration, and uninstallation of K3s clusters, along with related tools such as Helm, cert-manager, and Rancher.
 
-This repository contains scripts to automate the installation of K3s and Rancher, along with necessary components like Cert Manager. These scripts are designed to work with environment variables defined in a `.env` file to allow for easy customization based on your specific needs.
+## Features
 
+- **Install K3s Server**: Set up a K3s server with customizable Cluster and Service CIDR ranges.
+- **Install K3s Agent**: Install a K3s agent by specifying the K3s server URL and token.
+- **Install Helm**: Download and install the latest version of Helm to manage Kubernetes packages.
+- **Install cert-manager**: Deploy cert-manager to manage TLS certificates within your K3s cluster.
+- **Install Rancher**: Deploy Rancher with Let's Encrypt support for Kubernetes cluster management.
+- **Edit Versions**: Update versions of Rancher, cert-manager, and K3s directly from the script.
+- **Edit CIDRs**: Modify the Cluster and Service CIDRs to suit your networking needs.
+- **Uninstall K3s**: Cleanly remove K3s from your system.
 
-## Installation / Usage
+## Usage
 
-```bash
-# Install curl and git
-sudo apt-get update
-sudo apt-get install curl git -y
+### Running the Script
 
-# Clone the repository (Replace <repository-url> with the actual URL of your Git repository)
-git clone https://github.com/yeranosyanvahan/quick-install
-cd quick-install/k3s
+1. **Clone the Repository**
 
-# Update the .env file with your specific configuration
-# Use a text editor of your choice, for example, nano or vim
-nano .env
+   ```bash
+   git clone https://github.com/your-username/quick-install.git
+   cd quick-install
+   ```
 
-# Execute the script to install the K3s server
-./server-install.sh
+2. **Run the Main Script**
 
-```
-## .env File
+   Execute the main Python script to start the tool:
 
-The `.env` file in the `k3s` directory defines all the necessary environment variables for the scripts. It includes configurations for K3s version, server CIDR, agent settings, Rancher hostname, version, bootstrap password, Cert Manager version, and Let's Encrypt email. Here's a breakdown of what each variable means:
+   ```bash
+   python3 main.py
+   ```
 
-- `K3S_VERSION`: The version of K3s to install. Supports `v1.28.7+k3s1` (latest stable) and `v1.27.11+k3s1` (latest supported by Rancher 2.8.2).
-- `K3S_KUBECONFIG_PATH`: Path to the K3s kubeconfig file.
-- `K3S_SERVER_CIDR`: CIDR range for the K3s server.
-- `K3S_AGENT_URL`: URL for the K3s agent to connect to the server.
-- `K3S_AGENT_TOKEN`: Token for the K3s agent to authenticate with the server.
-- `RANCHER_HOSTNAME`: Hostname for the Rancher installation.
-- `RANCHER_VERSION`: Version of Rancher to install. Example: `2.8.2`.
-- `RANCHER_BOOTSTRAP_PASSWORD`: Password to use for bootstrapping Rancher.
-- `CERT_MANAGER_VERSION`: Version of Cert Manager to install.
-- `LETSENCRYPT_EMAIL`: Email address to use for Let's Encrypt registration.
+3. **Menu Options**
 
-### Version Compatibility
+   Upon running the script, you'll be presented with a menu that allows you to perform various tasks. The available options may vary depending on whether K3s is already installed on your system.
 
-- For the latest information on version compatibility between K3s and Rancher, refer to the [Latest Rancher version Support Matrix](https://www.suse.com/suse-rancher/support-matrix).
-- For the latest information on latest K3s release version follow [this link](https://update.k3s.io/v1-release/channels/stable)
-- For other versions of K3s follow [this link](https://docs.k3s.io/release-notes/v1.29.X)
-- When using `rancher-install.sh` ensure that the `K3S_VERSION` and `RANCHER_VERSION` specified in the `.env` file are compatible with each other.
+   Here are the main options you might see:
 
-## Scripts
+   - **V) Edit/Change Versions**: Allows you to update the versions of Rancher, cert-manager, and K3s. (Make sure they are compatible)
+   - **D) Install Dependencies**: Installs required dependencies like `curl`.
+   - **A) Install K3s Agent**: Installs K3s agent by specifying the server URL and token.
+   - **K) Install K3s Server**: Installs K3s server with the specified version and CIDR ranges.
+   - **(K)CIDR) Edit/Change CIDRs**: Modify the Cluster CIDR and Service CIDR.
+   - **(K)CNI) Edit/Change CNIs**: Flannel(default), Cilium
+   -  **U) Uninstall K3s**: Uninstalls K3s server or agent from your system.
+   -  **H) Install Helm**: Installs the latest version of Helm.
+   -  **C) Install cert-manager**: Installs cert-manager in your K3s cluster.
+   -   **R) Install Rancher**: Installs Rancher with Let's Encrypt support.
+   - **E) Exit**: Exits the script.
 
-The `k3s` directory contains several scripts for installing and uninstalling K3s and Rancher:
+   After selecting an option, follow the on-screen instructions to complete the task.
 
-- `agent-install.sh`: Script to install the K3s agent.
-- `agent-uninstall.sh`: Script to uninstall the K3s agent.
-- `rancher-install.sh`: Script to install Rancher using Helm.
-- `server-install.sh`: Script to install the K3s server.
-- `server-uninstall.sh`: Script for uninstalling the K3s server.
+## Customization
 
-## Requirements
+- **Edit Versions**: You can update the versions of K3s, Rancher, or cert-manager using the "Edit/Change Versions" option in the menu.
+- **Modify CIDRs**: Customize the Cluster and Service CIDRs to fit your network setup by selecting the "Edit/Change CIDRs" option.
 
-- A Linux-based system with Bash shell.
-- `curl` and `helm` are required for the scripts to work. These will be installed by the scripts if not present.
+## Contributing
 
-## Note
+Contributions are welcome! Feel free to fork the repository, make improvements, and submit a pull request.
 
-Ensure the `.env` file's sensitive information is secured appropriately and not included in version control.
+## License
 
+This project is open-source and available under the MIT License.
